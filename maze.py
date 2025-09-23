@@ -116,7 +116,7 @@ class Maze():
 
              # Initialize frontier to just the starting position
             start = Node(state=self.start, parent=None, action=None)
-            frontier = StackFrontier() #DFS algoritthm. toggle to QueueFrontier for BFS
+            frontier = QueueFrontier() #DFS/BFS algoritthm. toggle to QueueFrontier for BFS
             frontier.add(start)
 
             # Initialize an empty explored set
