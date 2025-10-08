@@ -27,7 +27,8 @@ class StackFrontier():
             raise Exception("Empty frontier")
         else:
             node = self.frontier[-1]
-            self.frontier.pop()
+            #self.frontier.pop()
+            self.frontier = self.frontier[:-1]
             return node
         
 class QueueFrontier(StackFrontier):
@@ -36,7 +37,8 @@ class QueueFrontier(StackFrontier):
             raise Exception("Empty frontier")
         else:
             node = self.frontier[0]
-            self.frontier.pop(0)
+            #self.frontier.pop(0)
+            self.frontier= self.frontier[1:]
             return node
         
 class Maze():
@@ -109,14 +111,20 @@ class Maze():
             return result
 
 
-    def  solve(self):
+    def  solve(self, frontier_type):
             """finds a solution to a maze if itsthere"""
             # Keep track of number of states explored
             self.num_explored = 0
 
              # Initialize frontier to just the starting position
             start = Node(state=self.start, parent=None, action=None)
-            frontier = QueueFrontier() #DFS/BFS algoritthm. toggle to QueueFrontier for BFS
+            if frontier_type.upper() == "BFS":
+                frontier = QueueFrontier()
+            elif frontier_type.upper() == "DFS":
+                frontier = StackFrontier()
+            else:
+                raise Exception("Invalid frontier_type. Use 'BFS' or 'DFS'.")
+            #frontier = QueueFrontier() #DFS/BFS algoritthm. toggle to QueueFrontier for BFS
             frontier.add(start)
 
             # Initialize an empty explored set
@@ -207,17 +215,18 @@ class Maze():
             img.save(filename)
 
 
-if len(sys.argv) != 2:
+if len(sys.argv) != 3:
     sys.exit("Usage: python maze.py maze.txt")
 input_file = sys.argv[1]
+frontier = sys.argv[2]
 m = Maze(input_file)
 print("Maze:")
 m.print()
-print("Solving...")
-m.solve()
+print(f"Solving using {frontier}")
+m.solve(frontier)
 print("States Explored:", m.num_explored)
 print("Solution:")
 m.print()
-output_file_name = f"{input_file}_solved.png"
+output_file_name = f"{input_file}_{frontier}_solved.png"
 m.output_image(output_file_name, show_explored=True)
 
