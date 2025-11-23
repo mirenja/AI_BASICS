@@ -1,11 +1,13 @@
 # AI BASICS 
 
-This repository contains multiple projects but for  the purposes of this submission, the folders of interest are:
+This repository contains multiple folders but for  the purposes of this submission, the folders of interest are:
 
 * knights
 * minesweeper
 
 ## Repository Structure
+
+``` bash
 .
 ├── Knigts_and_Knaves_Homework
 ├── README.md
@@ -15,6 +17,7 @@ This repository contains multiple projects but for  the purposes of this submiss
 ├── minesweeper
 ├── requirements.txt
 └── venv
+``` 
 
 ## Running the Projects
 
