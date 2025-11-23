@@ -58,10 +58,10 @@ def main():
     load_data(directory)
     print("Data loaded.")
 
-    source = person_id_for_name(input("Name: "))
+    source = person_id_for_name(input("Source Name: "))
     if source is None:
         sys.exit("Person not found.")
-    target = person_id_for_name(input("Name: "))
+    target = person_id_for_name(input("Target Name: "))
     if target is None:
         sys.exit("Person not found.")
 
@@ -126,6 +126,7 @@ def person_id_for_name(name):
     resolving ambiguities as needed.
     """
     person_ids = list(names.get(name.lower(), set()))
+    print(f"list of person id{person_ids}")
     if len(person_ids) == 0:
         return None
     elif len(person_ids) > 1:

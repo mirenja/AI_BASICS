@@ -117,6 +117,7 @@ class Sentence():
         """
         if self.count == 0:
             return set(self.cells)
+        return set()
         
 
     def mark_mine(self, cell):
@@ -282,7 +283,7 @@ class MinesweeperAI():
         for j in range(self.width)
         if (i, j) not in self.moves_made and (i, j) not in self.mines
         ]
-        
+
         if possible_moves:
             return random.choice(possible_moves)
         return None
